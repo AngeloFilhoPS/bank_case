@@ -17,4 +17,9 @@ public class AccountService {
 
         return new AccountResponseDTO(accountEntity.getId(),accountEntity.getDocumentNumber());
     }
+
+    public AccountResponseDTO getAccountById(Long id){
+        AccountEntity accountEntity = accountRepository.getReferenceById(id);
+        return new AccountResponseDTO(accountEntity.getId(),accountEntity.getDocumentNumber());
+    }
 }

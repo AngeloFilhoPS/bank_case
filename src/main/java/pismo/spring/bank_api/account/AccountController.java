@@ -19,5 +19,15 @@ public class AccountController {
                 .body(createdAccount);
     }
 
+    @GetMapping("/{accountId}")
+    public ResponseEntity<AccountResponseDTO> getAccount (
+            @PathVariable Long accountId
+    ){
+        return ResponseEntity
+                .ok()
+                .body(service.getAccountById(accountId));
+
+    }
+
 
 }
