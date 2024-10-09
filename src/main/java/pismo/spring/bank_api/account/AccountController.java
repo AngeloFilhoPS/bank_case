@@ -12,7 +12,8 @@ public class AccountController {
     private final AccountService service;
 
     @PostMapping
-    public ResponseEntity<AccountResponseDTO> createAccount(@RequestBody AccountCreateRequestDTO requestDTO){
+    public ResponseEntity<AccountResponseDTO> createAccount(
+            @RequestBody AccountCreateRequestDTO requestDTO){
         AccountResponseDTO createdAccount = service.createAccountByDocument(requestDTO);
         return ResponseEntity
                 .ok()
