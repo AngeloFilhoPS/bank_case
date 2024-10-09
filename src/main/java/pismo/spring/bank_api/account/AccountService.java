@@ -5,14 +5,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+
 public class AccountService {
 
     private final AccountRepository accountRepository;
-    public String createAccountByDocument(String numberDocument){
-        AccountEntity newAccount = new AccountEntity();
-        newAccount.setDocumentNumber(numberDocument);
-        accountRepository.save(newAccount);
-        System.out.println(numberDocument);
-        return numberDocument;
+    private final AccountMapper accountMapper;
+
+    public AccountResponseDTO createAccountByDocument(AccountCreateRequestDTO accountCreateRequestDTO){
+        AccountEntity newAccount = accountMapper.toEntity(accountCreateRequestDTO);
+        AccountEntity accountEntity = accountRepository.save(newAccount);
+
+        return new AccountResponseDTO(accountEntity.getId(),accountEntity.getDocumentNumber());
     }
 }
