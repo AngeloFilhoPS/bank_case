@@ -4,10 +4,10 @@ import lombok.Getter;
 
 @Getter
 public enum OperationTypeEnum {
-    COMPRA(1l),
-    COMPRA_PARCELADA(2l),
-    SAQUE(3l),
-    PAGAMENTO(4l);
+    COMPRA(1L),
+    COMPRA_PARCELADA(2L),
+    SAQUE(3L),
+    PAGAMENTO(4L);
 
     private final Long id;
 
@@ -17,7 +17,7 @@ public enum OperationTypeEnum {
 
     public static boolean isValid(Long id) {
         for (OperationTypeEnum type : OperationTypeEnum.values()) {
-            if (type.getId() == id) {
+            if (type.getId().equals(id) ) {
                 return true;
             }
         }
