@@ -31,13 +31,16 @@ Serviço responsável pelo gerenciamento de contas e transações para o bank ca
 <div id='installation'></div>
 
 ## Instalação ⏬
-**Antes de tudo, é necessário o seguinte pré-requisito**: Usar uma JDK com o projeto e suas features com Springboot, é recomendado versões mais novas do Java JDK como a 21 assim como Docker na máquina que for executar o projeto
+**Antes de tudo, é necessário o seguinte pré-requisito**: Usar uma JDK com o projeto e suas features com Springboot, é recomendado versões mais novas do Java JDK como a 17 ou superior assim como Docker na máquina que for executar o projeto
 
 Exemplo: JDK 21.0.4
 <br>
 Instalação do docker em sua máquina:
-
 https://docs.docker.com/desktop/
+
+Gradle 7.x ou superior
+Instalação do Gradle:
+https://gradle.org/install/
 
 <hr>
 <div id='repository'></div>
@@ -67,14 +70,25 @@ curl --location 'localhost:8080/v1/accounts' \
     "documentNumber":"023155295460"
 }'
 ```
-### GET Account (curl
+### GET Account (curl)
 ```
 curl --location 'localhost:8080/v1/accounts/1'
 ```
 # 
 
-
-
+### POST Transaction (curl)
+```
+curl --location 'localhost:8080/v1/transactions' \
+--header 'Content-Type: application/json' \
+--data '{  
+  "account_id": 1,  
+  "operation_type_id": 4,  
+  "amount": 123.45  
+}'
+```
+## Importar via Postman
+Você pode também baixar e escolher Import de uma collection via Postman, selecione o arquivo
+[Pismo Bank Financial.postman_collection.json](Pismo%20Bank%20Financial.postman_collection.json) e as collections serão importados para seu ambiente Postman para teste
 <div id='regulation'></div>
 
 

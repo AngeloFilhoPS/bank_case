@@ -3,6 +3,8 @@ package pismo.spring.bank_api.account;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class AccountService {
@@ -16,8 +18,8 @@ public class AccountService {
         return new AccountResponseDTO(savedAccount.getId(),savedAccount.getDocumentNumber());
     }
 
-    public AccountResponseDTO getAccountById(Long id){
-        AccountEntity accountEntity = accountRepository.getReferenceById(id);
-        return new AccountResponseDTO(accountEntity.getId(),accountEntity.getDocumentNumber());
+    public Optional<AccountResponseDTO> getAccountById(Long id){
+        return accountRepository.findById(id)
+                .map(account -> new AccountResponseDTO(account.getId(), account.getDocumentNumber()));
     }
 }

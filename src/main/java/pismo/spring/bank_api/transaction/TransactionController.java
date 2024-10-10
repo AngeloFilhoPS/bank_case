@@ -18,14 +18,11 @@ public class TransactionController {
 
     @PostMapping
     @Operation(summary = "Cria uma nova transação", description = "Cria uma nova transação.")
-    public ResponseEntity<TransactionResponseDTO> createTransaction(
+    public ResponseEntity<?> createTransaction(
             @Valid
             @RequestBody TransactionCreateRequestDTO requestDTO
     ){
-        TransactionResponseDTO responseDTO = service.createTransaction(requestDTO);
-        return ResponseEntity.ok().body(
-                responseDTO
-        );
+        return service.createTransaction(requestDTO);
     }
 
 }

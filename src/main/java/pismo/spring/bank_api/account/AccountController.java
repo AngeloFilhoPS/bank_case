@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 @RestController
 @RequestMapping(value = "v1/accounts")
 @AllArgsConstructor
@@ -23,16 +27,18 @@ public class AccountController {
                 .ok()
                 .body(createdAccount);
     }
-
     @GetMapping("/{accountId}")
-    public ResponseEntity<AccountResponseDTO> getAccount (
+    public ResponseEntity<?> getAccount (
             @PathVariable Long accountId
     ){
-        return ResponseEntity
-                .ok()
-                .body(service.getAccountById(accountId));
+        Optional<AccountResponseDTO> accountOpt = service.getAccountById(accountId);
+        if(accountOpt.isPresent()){
+            return ResponseEntity.ok(accountOpt.get());
+        } else {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Conta não encontrada");
+            return ResponseEntity.ok(response);
+        }
 
     }
-
-
 }
