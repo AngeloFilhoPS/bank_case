@@ -11,10 +11,10 @@ public class AccountService {
     private final AccountMapper accountMapper;
 
     public AccountResponseDTO createAccountByDocument(AccountCreateRequestDTO accountCreateRequestDTO){
-        AccountEntity newAccount = accountMapper.toEntity(accountCreateRequestDTO);
-        AccountEntity accountEntity = accountRepository.save(newAccount);
-
-        return new AccountResponseDTO(accountEntity.getId(),accountEntity.getDocumentNumber());
+        AccountEntity newAccount = new AccountEntity();
+        newAccount.setDocumentNumber(accountCreateRequestDTO.getDocumentNumber());
+        AccountEntity savedAccount = accountRepository.save(newAccount);
+        return new AccountResponseDTO(savedAccount.getId(),savedAccount.getDocumentNumber());
     }
 
     public AccountResponseDTO getAccountById(Long id){
