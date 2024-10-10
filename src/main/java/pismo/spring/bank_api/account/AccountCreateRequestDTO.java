@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Getter
@@ -15,6 +14,5 @@ public class AccountCreateRequestDTO {
     @NotBlank
     @NotNull
     @CPF
-    @CNPJ
     private String documentNumber;
 }
