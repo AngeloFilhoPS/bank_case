@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 public class AccountService {
 
     private final AccountRepository accountRepository;
-    private final AccountMapper accountMapper;
 
     public AccountResponseDTO createAccountByDocument(AccountCreateRequestDTO accountCreateRequestDTO){
         AccountEntity newAccount = new AccountEntity();
