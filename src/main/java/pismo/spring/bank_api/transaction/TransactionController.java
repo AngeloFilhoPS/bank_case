@@ -1,5 +1,6 @@
 package pismo.spring.bank_api.transaction;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +16,14 @@ public class TransactionController {
     private final TransactionService service;
 
     @PostMapping
-    public ResponseEntity<String> createTransaction(
+    @Operation(summary = "Cria uma nova transação", description = "Cria uma nova transação.")
+    public ResponseEntity<TransactionResponseDTO> createTransaction(
             @RequestBody TransactionCreateRequestDTO requestDTO
     ){
-        service.createTransaction(requestDTO);
-        return ResponseEntity.ok().body("Transaction");
+        TransactionResponseDTO responseDTO = service.createTransaction(requestDTO);
+        return ResponseEntity.ok().body(
+                responseDTO
+        );
     }
 
 }

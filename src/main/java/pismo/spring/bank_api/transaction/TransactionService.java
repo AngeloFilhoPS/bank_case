@@ -10,11 +10,10 @@ public class TransactionService {
     private final TransactionRepository transactionRepository;
     private final TransactionMapper mapper;
 
-    public String createTransaction(TransactionCreateRequestDTO transactionCreateRequestDTO){
-        TransactionEntity transactionEntity = mapper.toEntity(transactionCreateRequestDTO);
-        transactionRepository.save(transactionEntity);
-        System.out.println("Chegou");
-        return "Complete save";
+    public TransactionResponseDTO createTransaction(TransactionCreateRequestDTO transactionCreateRequestDTO){
+        TransactionEntity newTransaction = mapper.toEntity(transactionCreateRequestDTO);
+        TransactionEntity savedTransaction = transactionRepository.save(newTransaction);
+        return mapper.toDto(savedTransaction);
     }
 
 
